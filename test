@@ -1,0 +1,7 @@
+while read line
+do
+ case "$line" in
+   "#DNS="* ) echo $line;echo "blah blah"
+   *) echo $line
+ esac
+done < /etc/systemd/resolved.conf
