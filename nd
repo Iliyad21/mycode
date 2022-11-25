@@ -1,6 +1,3 @@
-apt update && apt upgrade -y
-apt install vim nftables iputils-ping dnsutils curl -y
-sleep 7
 ip link set dev enp0s3 down
 dhclient -r enp0s3
 touch /etc/netplan/99_config.yaml
