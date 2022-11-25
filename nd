@@ -1,0 +1,14 @@
+apt update && apt upgrade -y
+apt install vim nftables iputils-ping dnsutils curl -y
+sleep 7
+ip link set dev enp0s3 down
+dhclient -r enp0s3
+touch /etc/netplan/99_config.yaml
+# write the following
+echo -e 'network:\n    version: 2\n    renderer: networkd\n    ethernets:\n        enp0s8:\n            addresses:\n                - 192.168.19.2/29\n\n            routes:\n                - to: default\n                  via: 192.168.19.1' > /etc/netplan/99_config.yaml
+sleep 2
+netplan apply
+ip address
+ip route
+sleep 3
+cp /etc/systemd/resolved.conf /etc/systemd/resolved.conf.backup
